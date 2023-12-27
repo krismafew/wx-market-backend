@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -51,12 +52,13 @@ public class WxAuthController {
     public Object login(@RequestBody MarketUser user){
         // Shiro认证
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
+        token.setRememberMe(true);
         SecurityUtils.setSecurityManager(securityManager);
         Subject subject = SecurityUtils.getSubject();
         subject.login(token);
         MarketUser marketUser = userService.selectOneByUsername(user.getUsername());
         HashMap<String, Object> data = new HashMap<>();
-        data.put("token", token);
+        data.put("token", subject.getSession().getId());
         HashMap<String, Object> userInfo = new HashMap<>();
         userInfo.put("avatarUrl", marketUser.getAvatar());
         userInfo.put("nickName", user.getUsername());
