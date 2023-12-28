@@ -3,6 +3,11 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <context id="simple" targetRuntime="MyBatis3">
+        <property name="autoDelimitKeywords" value="true"/>
+        <!--可以使用``包括字段名，避免字段名与sql保留字冲突报错-->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
         <!-- 查询单条数据插件 -->
         <plugin type="com.itfsw.mybatis.generator.plugins.SelectOneByExamplePlugin"/>
 
