@@ -8,4 +8,6 @@ public interface MarketGoodsService {
     List<MarketGoods> selectGoodsByCategoryId(Integer categoryId, Integer page, Integer limit);
 
     Integer countGoods();
+
+    MarketGoods selectGoodsById(Integer goodsId);
 }

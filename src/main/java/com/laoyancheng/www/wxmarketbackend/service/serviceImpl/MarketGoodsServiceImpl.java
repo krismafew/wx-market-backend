@@ -1,6 +1,7 @@
 package com.laoyancheng.www.wxmarketbackend.service.serviceImpl;
 
 import com.github.pagehelper.PageHelper;
+import com.laoyancheng.www.wxmarketbackend.db.domain.MarketGoods;
 import com.laoyancheng.www.wxmarketbackend.db.domain.MarketGoodsExample;
 import com.laoyancheng.www.wxmarketbackend.db.mapper.MarketGoodsMapper;
 import com.laoyancheng.www.wxmarketbackend.service.MarketGoodsService;
@@ -31,5 +32,10 @@ public class MarketGoodsServiceImpl implements MarketGoodsService {
         MarketGoodsExample marketGoodsExample = new MarketGoodsExample();
         marketGoodsExample.createCriteria().andIsOnSaleEqualTo(true).andDeletedEqualTo(false);
         return goodsMapper.selectByExample(marketGoodsExample).size();
+    }
+
+    @Override
+    public MarketGoods selectGoodsById(Integer goodsId) {
+        return goodsMapper.selectByPrimaryKey(goodsId);
     }
 }

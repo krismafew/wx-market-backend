@@ -6,7 +6,6 @@ import com.laoyancheng.www.wxmarketbackend.service.AliyunSMSService;
 import com.laoyancheng.www.wxmarketbackend.service.MarketUserService;
 import com.laoyancheng.www.wxmarketbackend.util.ResponseUtil;
 import jakarta.validation.Valid;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.mgt.SecurityManager;
@@ -58,7 +57,9 @@ public class WxAuthController {
         subject.login(token);
         MarketUser marketUser = userService.selectOneByUsername(user.getUsername());
         HashMap<String, Object> data = new HashMap<>();
-        data.put("token", subject.getSession().getId());
+        Session session = subject.getSession();
+        session.setAttribute("userId", marketUser.getId());
+        data.put("token", session.getId());
         HashMap<String, Object> userInfo = new HashMap<>();
         userInfo.put("avatarUrl", marketUser.getAvatar());
         userInfo.put("nickName", user.getUsername());
