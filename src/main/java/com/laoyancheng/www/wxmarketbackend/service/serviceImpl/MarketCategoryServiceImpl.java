@@ -45,6 +45,40 @@ public class MarketCategoryServiceImpl implements MarketCategoryService {
         data.put("currentCategory", currentCategory);
         data.put("parentCategory", parentCategory);
         return data;
+    }
 
+    @Override
+    public Object index() {
+        MarketCategoryExample marketCategoryExample = new MarketCategoryExample();
+        marketCategoryExample.createCriteria().andLevelEqualTo("L1").andDeletedEqualTo(false);
+        List<MarketCategory> categoryList = categoryMapper.selectByExample(marketCategoryExample);
+        MarketCategory currentCategory = categoryList.get(0);
+        // 通过currentCategoryId查找出所有的二级子类目
+        marketCategoryExample.clear();
+        marketCategoryExample.createCriteria().andLevelEqualTo("L2").andPidEqualTo(currentCategory.getId()).andDeletedEqualTo(false);
+        List<MarketCategory> currentSubCategory = categoryMapper.selectByExample(marketCategoryExample);
+
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("categoryList", categoryList);
+        data.put("currentCategory", currentCategory);
+        data.put("currentSubCategory", currentSubCategory);
+        return data;
+    }
+
+    @Override
+    public Object listL1CategoryAndSubCategoriesByL1Id(Integer id) {
+        MarketCategoryExample marketCategoryExample = new MarketCategoryExample();
+        marketCategoryExample.createCriteria().andLevelEqualTo("L1").andIdEqualTo(id).andDeletedEqualTo(false);
+        MarketCategory currentCategory = categoryMapper.selectOneByExample(marketCategoryExample);
+        if(currentCategory == null)
+            // L1id参数值不对
+            return null;
+        marketCategoryExample.clear();
+        marketCategoryExample.createCriteria().andLevelEqualTo("L2").andPidEqualTo(currentCategory.getId()).andDeletedEqualTo(false);
+        List<MarketCategory> currentSubCategory = categoryMapper.selectByExample(marketCategoryExample);
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("currentCategory", currentCategory);
+        data.put("currentSubCategory", currentSubCategory);
+        return data;
     }
 }
