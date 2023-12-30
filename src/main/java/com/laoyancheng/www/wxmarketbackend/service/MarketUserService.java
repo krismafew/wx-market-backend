@@ -3,6 +3,9 @@ package com.laoyancheng.www.wxmarketbackend.service;
 import com.laoyancheng.www.wxmarketbackend.db.domain.MarketUser;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Description:
  * @Author: JuRan
@@ -11,4 +14,6 @@ import org.springframework.stereotype.Service;
 
 public interface MarketUserService {
     MarketUser selectOneByUsername(String username);
+
+    List<MarketUser> selectUsersByIdList(List<Integer> userIdList);
 }

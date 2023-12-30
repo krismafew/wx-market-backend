@@ -7,6 +7,8 @@ import com.laoyancheng.www.wxmarketbackend.service.MarketUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Description:
  * @Author: JuRan
@@ -22,5 +24,12 @@ public class MarketUserServiceImpl implements MarketUserService {
         MarketUserExample marketUserExample = new MarketUserExample();
         marketUserExample.or().andUsernameEqualTo(username).andDeletedEqualTo(false);
         return userMapper.selectOneByExample(marketUserExample);
+    }
+
+    @Override
+    public List<MarketUser> selectUsersByIdList(List<Integer> userIdList) {
+        MarketUserExample marketUserExample = new MarketUserExample();
+        marketUserExample.createCriteria().andDeletedEqualTo(false).andIdIn(userIdList);
+        return userMapper.selectByExample(marketUserExample);
     }
 }

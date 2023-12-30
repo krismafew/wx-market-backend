@@ -81,4 +81,9 @@ public class MarketTopicServiceImpl implements MarketTopicService {
             return randomList;
         }
     }
+
+    @Override
+    public MarketTopic selectTopicById(Integer valueId) {
+        return topicMapper.selectByPrimaryKey(valueId);
+    }
 }

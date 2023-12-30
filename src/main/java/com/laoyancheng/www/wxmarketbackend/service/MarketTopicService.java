@@ -13,4 +13,6 @@ public interface MarketTopicService {
     Object selectDetailTopic(Integer id);
 
     List selectRelatedTopics(Integer id);
+
+    MarketTopic selectTopicById(Integer valueId);
 }
