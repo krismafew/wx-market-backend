@@ -590,4 +590,7 @@
     update market_topic set deleted = 1
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectTopicsByIdList" resultType="com.laoyancheng.www.wxmarketbackend.db.domain.MarketTopic">
+    select * from market_topic where id in idList and deleted == 0;
+  </select>
 </mapper>

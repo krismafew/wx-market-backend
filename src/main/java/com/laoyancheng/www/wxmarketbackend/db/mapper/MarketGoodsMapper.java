@@ -2,6 +2,8 @@ package com.laoyancheng.www.wxmarketbackend.db.mapper;
 
 import com.laoyancheng.www.wxmarketbackend.db.domain.MarketGoods;
 import com.laoyancheng.www.wxmarketbackend.db.domain.MarketGoodsExample;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -157,4 +159,6 @@ public interface MarketGoodsMapper {
      * @mbg.generated Fri Dec 29 16:04:46 CST 2023
      */
     int logicalDeleteByPrimaryKey(Integer id);
+
+    List<MarketGoods> selectGoodsByIdList(@Param("idList") ArrayList<Integer> idList);
 }

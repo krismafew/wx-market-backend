@@ -8,6 +8,7 @@ import com.laoyancheng.www.wxmarketbackend.service.MarketGoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,5 +38,10 @@ public class MarketGoodsServiceImpl implements MarketGoodsService {
     @Override
     public MarketGoods selectGoodsById(Integer goodsId) {
         return goodsMapper.selectByPrimaryKey(goodsId);
+    }
+
+    @Override
+    public List selectGoodsByIdList(ArrayList<Integer> idList) {
+        return goodsMapper.selectGoodsByIdList(idList);
     }
 }

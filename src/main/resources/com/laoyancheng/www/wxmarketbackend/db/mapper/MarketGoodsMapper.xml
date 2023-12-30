@@ -748,4 +748,8 @@
     update market_goods set deleted = 1
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectGoodsByIdList" resultType="com.laoyancheng.www.wxmarketbackend.db.domain.MarketGoods">
+    select * from market_goods where id in idList and deleted == 0;
+  </select>
 </mapper>

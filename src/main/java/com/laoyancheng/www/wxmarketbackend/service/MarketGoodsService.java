@@ -2,6 +2,7 @@ package com.laoyancheng.www.wxmarketbackend.service;
 
 import com.laoyancheng.www.wxmarketbackend.db.domain.MarketGoods;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface MarketGoodsService {
@@ -10,4 +11,6 @@ public interface MarketGoodsService {
     Integer countGoods();
 
     MarketGoods selectGoodsById(Integer goodsId);
+
+    List<MarketGoods> selectGoodsByIdList(ArrayList<Integer> idList);
 }
