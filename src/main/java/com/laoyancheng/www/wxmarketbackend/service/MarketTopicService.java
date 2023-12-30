@@ -7,4 +7,10 @@ import java.util.List;
 
 public interface MarketTopicService {
     List<MarketTopic> selectTopicsByIdList(ArrayList<Integer> idList);
+
+    Object list();
+
+    Object selectDetailTopic(Integer id);
+
+    List selectRelatedTopics(Integer id);
 }

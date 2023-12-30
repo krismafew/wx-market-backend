@@ -41,7 +41,7 @@ public class MarketGoodsServiceImpl implements MarketGoodsService {
     }
 
     @Override
-    public List selectGoodsByIdList(ArrayList<Integer> idList) {
+    public List selectGoodsByIdList(List<Integer> idList) {
         return goodsMapper.selectGoodsByIdList(idList);
     }
 }

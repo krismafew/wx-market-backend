@@ -160,5 +160,5 @@ public interface MarketGoodsMapper {
      */
     int logicalDeleteByPrimaryKey(Integer id);
 
-    List<MarketGoods> selectGoodsByIdList(@Param("idList") ArrayList<Integer> idList);
+    List<MarketGoods> selectGoodsByIdList(@Param("idList") List<Integer> idList);
 }

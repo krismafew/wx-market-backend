@@ -12,5 +12,5 @@ public interface MarketGoodsService {
 
     MarketGoods selectGoodsById(Integer goodsId);
 
-    List<MarketGoods> selectGoodsByIdList(ArrayList<Integer> idList);
+    List<MarketGoods> selectGoodsByIdList(List<Integer> idList);
 }
